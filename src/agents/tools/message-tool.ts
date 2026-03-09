@@ -490,6 +490,33 @@ function buildPresenceSchema() {
   };
 }
 
+function buildProfileSchema() {
+  return {
+    displayName: Type.Optional(
+      Type.String({
+        description: "Profile display name for self-profile update actions.",
+      }),
+    ),
+    display_name: Type.Optional(
+      Type.String({
+        description: "snake_case alias of displayName for self-profile update actions.",
+      }),
+    ),
+    avatarUrl: Type.Optional(
+      Type.String({
+        description:
+          "Profile avatar URL for self-profile update actions. Matrix accepts mxc:// and http(s) URLs.",
+      }),
+    ),
+    avatar_url: Type.Optional(
+      Type.String({
+        description:
+          "snake_case alias of avatarUrl for self-profile update actions. Matrix accepts mxc:// and http(s) URLs.",
+      }),
+    ),
+  };
+}
+
 function buildChannelManagementSchema() {
   return {
     name: Type.Optional(Type.String()),
@@ -530,6 +557,7 @@ function buildMessageToolSchemaProps(options: {
     ...buildGatewaySchema(),
     ...buildChannelManagementSchema(),
     ...buildPresenceSchema(),
+    ...buildProfileSchema(),
   };
 }
 
